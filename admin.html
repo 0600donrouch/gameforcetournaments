@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameForce Elite - Administración de Torneos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="/_sdk/data_sdk.js" type="text/javascript" defer></script>
+    <script src="/_sdk/element_sdk.js" type="text/javascript" defer></script>
+    <script src="https://cdn.tailwindcss.com" type="text/javascript" defer></script>
+
+    <style>
+        body {
+            box-sizing: border-box;
+            background: url("./multimedia/fondo_pagina_torneo.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1100;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.25);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .main-header .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .main-header .navbar-nav .nav-link.active {
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .home-btn.header-action {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: white;
+            border-radius: 25px;
+            padding: 0.45rem 1rem;
+            font-weight: 600;
+            z-index: 1200;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .home-btn.header-action:hover {
+            transform: translateY(-50%) translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 255, 136, 0.25);
+        }
+
+        @media (max-width: 991px) {
+            .home-btn.header-action {
+                display: none;
+            }
+
+            .home-btn.d-lg-none {
+                position: static;
+                transform: none;
+                margin-left: 0.5rem;
+                margin-top: .5rem;
+                display: inline-flex;
+            }
+        }
+
+        .admin-container {
+            margin-top: 110px;
+            padding: 2rem 0;
+            flex: 1;
+        }
+
+        .welcome-section {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: .5rem;
+        }
+
+        .section-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 136, 0.12);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: #00ff88;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 8px;
+            padding: .75rem;
+            color: white;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(0, 0, 0, 0.55);
+            border-color: #00ff88;
+            box-shadow: 0 0 0 0.2rem rgba(0, 255, 136, 0.18);
+            color: white;
+        }
+
+        .tournament-card {
+            background: rgba(10, 10, 10, 0.85);
+            border-radius: 12px;
+            padding: 0;
+            margin-bottom: 18px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            position: relative;
+            color: #eaeaea;
+            overflow: hidden;
+        }
+
+        .tournament-content-wrapper {
+            padding: 16px;
+            position: relative;
+            z-index: 2;
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        .tournament-title {
+            font-weight: 700;
+            color: #00ff8f;
+            margin-bottom: 6px;
+            font-size: 1.15rem;
+        }
+
+        .tournament-info {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 6px;
+            font-size: .95rem;
+        }
+
+        .tournament-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap;
+        }
+
+        .tournament-banner-wrapper {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            overflow: hidden;
+            display: block;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .tournament-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tournament-card * {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            filter: none;
+        }
+
+        .modal-content {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid rgba(0, 255, 136, 0.18);
+            color: #fff;
+        }
+
+        #participantsList,
+        #sponsorsList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 6px;
+        }
+
+        .participant-item,
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .ms-auto {
+            margin-left: auto;
+        }
+
+        @view-transition {
+            navigation: auto;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            border-top: 1px solid var(--primary-color, #6366f1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-social a {
+            color: var(--text-muted, #94a3b8);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color, #10b981);
+            transform: translateY(-3px);
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container position-relative">
+                <a class="navbar-brand site-title" href="index.html" id="site-title">GAMEFORCE ELITE</a>
+
+                <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="index.html" class="home-btn header-action" title="Volver al Home">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver al Inicio
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container" role="main">
+        <div class="container">
+            <div class="welcome-section">
+                <h1 class="welcome-title" id="welcomeMessage">Bienvenido/a Mari</h1>
+                <p>Panel de administración de torneos y campañas solidarias</p>
+            </div>
+
+            <div class="section-card">
+                <h2 class="section-title"><i class="fas fa-plus-circle"></i> Crear Nuevo Torneo/Campaña</h2>
+                <form id="tournamentForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="title" class="form-label">Título</label>
+                            <input type="text" id="title" class="form-control" placeholder="Nombre del torneo"
+                                required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="game" class="form-label">Juego</label>
+                            <select id="game" class="form-select" required>
+                                <option value="">Seleccionar juego</option>
+                                <option>League of Legends</option>
+                                <option>Valorant</option>
+                                <option>Counter-Strike 2</option>
+                                <option>Fortnite</option>
+                                <option>FIFA 24</option>
+                                <option>Rocket League</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="platform" class="form-label">Plataforma</label>
+                            <select id="platform" class="form-select" required>
+                                <option value="">Seleccionar plataforma</option>
+                                <option>PC</option>
+                                <option>PlayStation</option>
+                                <option>Xbox</option>
+                                <option>Steam</option>
+                                <option>Mobile</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="date" class="form-label">Fecha</label>
+                            <input type="datetime-local" id="date" class="form-control" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="slots" class="form-label">Cupos</label>
+                            <input type="number" id="slots" class="form-control" min="1" placeholder="Cantidad"
+                                required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="objective" class="form-label">Objetivo Solidario</label>
+                            <input type="text" id="objective" class="form-control" placeholder="Causa benéfica"
+                                required />
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label for="bannerImage" class="form-label">Banner del Torneo (Opcional)</label>
+                            <input type="file" id="bannerImage" class="form-control" accept="image/" />
+                            <small class="text-muted">Asegura un banner para evitar errores visuales.</small>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> Crear Torneo</button>
+                </form>
+            </div>
+
+            <div class="section-card">
+                <h2 class="section-title"><i class="fas fa-list"></i> Torneos y Campañas Activos</h2>
+                <div id="tournamentsList"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Torneo</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editId" />
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Reglas</label>
+                                <textarea id="editRules" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Premios simbólicos</label>
+                                <textarea id="editPrizes" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Link PDF</label>
+                                <input type="url" id="editPdfLink" class="form-control" placeholder="https://..." />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Link Stream</label>
+                                <input type="url" id="editStreamLink" class="form-control" placeholder="https://..." />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" onclick="saveEdit()"><i class="fas fa-save"></i> Guardar
+                        Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="participantsModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+                    <button class="btn btn-primary me-3" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i>
+                        Volver</button>
+                    <h5 class="modal-title flex-grow-1 text-center">Participantes y Sponsors</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-success mb-3">Participantes</h6>
+                    <div id="participantsList"></div>
+
+                    <h6 class="text-success mt-4 mb-3">Sponsors</h6>
+                    <div id="sponsorsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-auto">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h5>GAMEFORCE ELITE</h5>
+                    <p>Centro de gaming solidario donde la pasión por los videojuegos se une con el compromiso social.
+                        Competimos, ganamos y ayudamos.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@gameforceelite.com"
+                            style="color: inherit; text-decoration: none;">info@gameforceelite.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+5411639871" style="color: inherit; text-decoration: none;">+54 11 NEXUS-01</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.google.com/?q=Puerto Madero, Buenos Aires" target="_blank"
+                            style="color: inherit; text-decoration: none;">Puerto Madero, Buenos Aires</a>
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Síguenos</h5>
+                    <div class="footer-social">
+                        <a href="#" target="_blank"><i class="fab fa-twitch"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>© 2025 GAMEFORCE ELITE. Todos los derechos reservados. | Estudiante: Rubén Diaz.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
+        if (user) {
+            document.getElementById("welcomeMessage").textContent = "Bienvenido/a " + user;
+        }
+    </script>
+</body>
+
+</html>

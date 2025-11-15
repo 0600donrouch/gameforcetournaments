@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameForce Elite - Quiero Colaborar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00ff88;
+            --dark-bg: rgba(0, 0, 0, 0.9);
+            --dark-card: rgba(255, 255, 255, 0.05);
+        }
+
+        #videoFondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(50%) blur(2px);
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        body {
+            box-sizing: border-box;
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            min-height: 100%;
+            position: relative;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 0.8rem 0;
+        }
+
+        .navbar {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--neon-green) !important;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.7);
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--neon-green) !important;
+        }
+
+        .home-btn {
+            background: linear-gradient(45deg, var(--neon-green), #00cc6a);
+            border: none;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.5);
+            color: white;
+        }
+
+        .collaboration-container {
+            margin-top: 80px;
+            padding: 2rem 0;
+            min-height: calc(100vh - 80px);
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .hero-section {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: skewX(-20deg);
+            animation: pulse-scan 8s infinite ease-in-out;
+        }
+
+        @keyframes pulse-scan {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 150%;
+            }
+
+            100% {
+                left: -100%;
+            }
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px var(--neon-green);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+
+
+        .form-card {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.4);
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            border-radius: 8px;
+            color: white;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+
+        .form-select option {
+            background-color: #1a1a1a;
+
+            color: white;
+        }
+
+        .form-select {
+            color: white;
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
+            color: white;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-label {
+            color: var(--neon-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .collaboration-type {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .type-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .type-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+        }
+
+        .type-card.active {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+        }
+
+        .type-icon {
+            font-size: 3rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .type-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .type-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .amount-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: white;
+            padding: 0.75rem 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .amount-btn:hover,
+        .amount-btn.active {
+            background: rgba(0, 255, 136, 0.5);
+            border-color: var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-green), #00cc6a);
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 2.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+            background: linear-gradient(45deg, #00cc6a, var(--neon-green));
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 136, 0.3);
+            border-color: var(--neon-green);
+            color: white;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .dynamic-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .dynamic-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <style>
+        @view-transition {
+            navigation: auto;
+        }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+    <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+    <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+</head>
+
+<body>
+    <video autoplay muted loop id="videoFondo">
+        <source src="./multimedia/background.mp4" type="video/mp4">
+        Tu navegador no soporta videos de fondo.
+    </video>
+
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand site-title" href="index.html">←</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Colaborar</a></li>
+                    </ul>
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="collaboration-container">
+        <div class="container">
+            <div class="hero-section">
+                <h1 class="hero-title">¡Únete a Nuestra Misión!</h1>
+                <p class="hero-subtitle">Tu colaboración hace posible que más jóvenes accedan al gaming competitivo y
+                    las
+                    causas solidarias</p>
+            </div>
+            <div class="form-card">
+                <form id="collaborationForm">
+                    <div class="section-title">
+                        <i class="fas fa-user"></i> Datos Personales
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="+54 9 11 1234-5678">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="age" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="age" placeholder="Tu edad" min="13" max="99">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="city" class="form-label">Ciudad</label>
+                            <input type="text" class="form-control" id="city" placeholder="Tu ciudad">
+                        </div>
+                    </div>
+                    <div class="section-title mt-4">
+                        <i class="fas fa-handshake"></i> Tipo de Colaboración
+                    </div>
+                    <div class="collaboration-type">
+                        <div class="type-card" data-type="money">
+                            <div class="type-icon">
+                                <i class="fas fa-donate"></i>
+                            </div>
+                            <div class="type-title">Donación</div>
+                            <div class="type-description">Apoya económicamente nuestras causas solidarias</div>
+                        </div>
+                        <div class="type-card" data-type="work">
+                            <div class="type-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="type-title">Trabajo</div>
+                            <div class="type-description">Colabora con tu tiempo y habilidades</div>
+                        </div>
+                        <div class="type-card" data-type="promotion">
+                            <div class="type-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="type-title">Difusión</div>
+                            <div class="type-description">Ayúdanos a llegar a más personas</div>
+                        </div>
+                    </div>
+                    <div id="moneySection" class="dynamic-section">
+                        <div class="section-title">
+                            <i class="fas fa-money-bill-wave"></i> Detalles de Donación
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Monto de Donación</label>
+                                <div class="amount-options">
+                                    <button type="button" class="amount-btn" data-amount="1000">$1.000</button>
+                                    <button type="button" class="amount-btn" data-amount="2500">$2.500</button>
+                                    <button type="button" class="amount-btn" data-amount="5000">$5.000</button>
+                                    <button type="button" class="amount-btn" data-amount="10000">$10.000</button>
+                                </div>
+                                <input type="number" class="form-control" id="customAmount"
+                                    placeholder="Monto personalizado" min="100">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="donationType" class="form-label">Tipo de Aporte</label>
+                                <select class="form-select" id="donationType">
+                                    <option value="">Seleccionar tipo</option>
+                                    <option value="unique">Donación única</option>
+                                    <option value="monthly">Donación mensual</option>
+                                    <option value="quarterly">Donación trimestral</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="paymentMethod" class="form-label">Medio de Pago</label>
+                                <select class="form-select" id="paymentMethod">
+                                    <option value="">Seleccionar medio</option>
+                                    <option value="credit-card">Tarjeta de Crédito</option>
+                                    <option value="debit-card">Tarjeta de Débito</option>
+                                    <option value="bank-transfer">Transferencia Bancaria</option>
+                                    <option value="mercadopago">MercadoPago</option>
+                                    <option value="paypal">PayPal</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="donationPurpose" class="form-label">Destino de la Donación</label>
+                                <select class="form-select" id="donationPurpose">
+                                    <option value="">Seleccionar destino</option>
+                                    <option value="equipment">Equipamiento Gaming</option>
+                                    <option value="scholarships">Becas para Jóvenes</option>
+                                    <option value="charity">Causas Benéficas</option>
+                                    <option value="infrastructure">Infraestructura</option>
+                                    <option value="general">Fondo General</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="workSection" class="dynamic-section">
+                        <div class="section-title">
+                            <i class="fas fa-briefcase"></i> Detalles de Colaboración Laboral
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="workRole" class="form-label">Rol/Especialidad</label>
+                                <select class="form-select" id="workRole">
+                                    <option value="">Seleccionar rol</option>
+                                    <option value="coach">Coach/Entrenador</option>
+                                    <option value="streamer">Streamer/Creador de Contenido</option>
+                                    <option value="developer">Desarrollador Web</option>
+                                    <option value="designer">Diseñador Gráfico</option>
+                                    <option value="community">Community Manager</option>
+                                    <option value="marketing">Marketing Digital</option>
+                                    <option value="psychologist">Psicólogo Deportivo</option>
+                                    <option value="organizer">Organizador de Eventos</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="availability" class="form-label">Disponibilidad</label>
+                                <select class="form-select" id="availability">
+                                    <option value="">Seleccionar disponibilidad</option>
+                                    <option value="full-time">Tiempo completo</option>
+                                    <option value="part-time">Medio tiempo</option>
+                                    <option value="weekends">Fines de semana</option>
+                                    <option value="evenings">Noches</option>
+                                    <option value="flexible">Horario flexible</option>
+                                    <option value="project-based">Por proyectos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="workZone" class="form-label">Zona/Modalidad</label>
+                                <select class="form-select" id="workZone">
+                                    <option value="">Seleccionar modalidad</option>
+                                    <option value="remote">Remoto</option>
+                                    <option value="caba">CABA</option>
+                                    <option value="gba">Gran Buenos Aires</option>
+                                    <option value="cordoba">Córdoba</option>
+                                    <option value="rosario">Rosario</option>
+                                    <option value="mendoza">Mendoza</option>
+                                    <option value="other-city">Otra ciudad</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="preferredGame" class="form-label">Juego/Plataforma Preferida</label>
+                                <select class="form-select" id="preferredGame">
+                                    <option value="">Seleccionar juego</option>
+                                    <option value="league-of-legends">League of Legends</option>
+                                    <option value="valorant">Valorant</option>
+                                    <option value="cs2">Counter-Strike 2</option>
+                                    <option value="fortnite">Fortnite</option>
+                                    <option value="fifa">FIFA</option>
+                                    <option value="rocket-league">Rocket League</option>
+                                    <option value="mobile-games">Juegos Mobile</option>
+                                    <option value="all">Todos los juegos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="workExperience" class="form-label">Experiencia y Habilidades</label>
+                                <textarea class="form-control" id="workExperience" rows="3"
+                                    placeholder="Cuéntanos sobre tu experiencia, habilidades y cómo te gustaría colaborar..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="promotionSection" class="dynamic-section">
+                        <div class="section-title">
+                            <i class="fas fa-share-alt"></i> Detalles de Difusión
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="socialNetworks" class="form-label">Redes Sociales</label>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="instagram" name="networks"
+                                        value="instagram">
+                                    <label class="form-check-label" for="instagram">Instagram</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="twitter" name="networks"
+                                        value="twitter">
+                                    <label class="form-check-label" for="twitter">Twitter/X</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="tiktok" name="networks"
+                                        value="tiktok">
+                                    <label class="form-check-label" for="tiktok">TikTok</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="youtube" name="networks"
+                                        value="youtube">
+                                    <label class="form-check-label" for="youtube">YouTube</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="twitch" name="networks"
+                                        value="twitch">
+                                    <label class="form-check-label" for="twitch">Twitch</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="frequency" class="form-label">Frecuencia de Publicación</label>
+                                <select class="form-select" id="frequency">
+                                    <option value="">Seleccionar frecuencia</option>
+                                    <option value="daily">Diaria</option>
+                                    <option value="weekly">Semanal</option>
+                                    <option value="biweekly">Quincenal</option>
+                                    <option value="monthly">Mensual</option>
+                                    <option value="events">Solo eventos especiales</option>
+                                </select>
+                                <label for="followers" class="form-label mt-3">Número de Seguidores (aprox.)</label>
+                                <select class="form-select" id="followers">
+                                    <option value="">Seleccionar rango</option>
+                                    <option value="0-100">0 - 100</option>
+                                    <option value="100-500">100 - 500</option>
+                                    <option value="500-1k">500 - 1K</option>
+                                    <option value="1k-5k">1K - 5K</option>
+                                    <option value="5k-10k">5K - 10K</option>
+                                    <option value="10k+">10K+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="contentType" class="form-label">Tipo de Contenido</label>
+                                <textarea class="form-control" id="contentType" rows="2"
+                                    placeholder="¿Qué tipo de contenido sueles crear? (gaming, reviews, tutoriales, etc.)"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-secondary" id="downloadKit">
+                                    <i class="fas fa-download"></i> Descargar Kit de Prensa
+                                </button>
+                                <small class="text-muted d-block mt-2">Incluye logos, imágenes y textos
+                                    promocionales</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitud de Colaboración
+                        </button>
+                    </div>
+                </form>
+                <div id="successMessage" class="success-message">
+                    <h3 style="color: #00ff88; margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i> ¡Solicitud Enviada!
+                    </h3>
+                    <p>Gracias por tu interés en colaborar con GameForce Elite. Hemos recibido tu solicitud y nos
+                        pondremos en contacto contigo pronto.</p>
+                    <button type="button" class="btn btn-primary mt-3" onclick="resetForm()"> Enviar Otra Solicitud
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-text">
+                <p>© 2025 GameForce Elite. Todos los derechos reservados.</p>
+                <p>Centro de Gaming Solidario - Formando campeones, construyendo comunidad</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.type-card').forEach(card => {
+            card.addEventListener('click', function () {
+                document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.dynamic-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                const type = this.dataset.type;
+                const section = document.getElementById(type + 'Section');
+                if (section) {
+                    section.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('customAmount').value = this.dataset.amount;
+            });
+        });
+
+        document.getElementById('customAmount').addEventListener('input', function () {
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+        });
+
+        document.getElementById('downloadKit').addEventListener('click', function () {
+            const contenidoKit = `
+======================================================
+KIT DE PRENSA OFICIAL: GAMEFORCE ELITE (GFE)
+======================================================
+
+**[TITULAR DE LANZAMIENTO]**
+GameForce Elite y UNAHUR Presentan "GameForce Elite": La Plataforma de Simulación Táctica más Ambiciosa de Latinoamérica.
+---
+**Fecha de Publicación:** 14 de Noviembre de 2025
+**Lanzamiento Global Estimado:** Q1 2026
+
+## 🎯 Acerca de GameForce Elite (GFE)
+GameForce Elite es una plataforma de **simulación competitiva y desarrollo de habilidades inmersivas** creada para trascender los límites de los e-sports tradicionales. Utilizando un motor gráfico propietario y un avanzado sistema de **Inteligencia Artificial (IA) adaptativa**, GFE genera escenarios hiperrealistas para el entrenamiento estratégico en campos tan diversos como la ciberseguridad y la gestión de crisis.
+
+## 🤝 Colaboración Estratégica con UNAHUR
+El núcleo tecnológico de GFE es resultado de un proyecto de **Vinculación Tecnológica y Transferencia de Conocimiento** con la Universidad Nacional de Hurlingham (UNAHUR).
+
+**Detalles de la Alianza:**
+* **Instituto Involucrado:** Instituto de Tecnología e Ingeniería (ITE) de UNAHUR.
+* **Aportación Académica:** El equipo de investigación en **Tecnicatura en Inteligencia Artificial** de la UNAHUR ha desarrollado los algoritmos de 'Deep Learning' que permiten la adaptabilidad y el balance del motor de juego, asegurando un entorno de entrenamiento justo y desafiante.
+* **Cita (Inventada) del Rector:** "Esta colaboración con GameForce Elite es un testimonio del compromiso de UNAHUR de ser un motor de innovación, llevando la excelencia académica directamente al sector de la tecnología y el entretenimiento." – Lic. **Martín Vilela**, Secretario General de UNAHUR.
+
+## 📰 Información Clave y Recursos
+* **Nombre de la Compañía:** Elite Systems Dynamics S.R.L.
+* **Fundador y CEO:** Ing. **Rubén Diaz**.
+* **Motor:** Unity / Unreal Engine (Modificado para optimización en tiempo real).
+* **Público Objetivo:** Jugadores de e-sports, Entidades de entrenamiento corporativo y Estudiantes de tecnología.
+
+**Recursos Incluidos en el Kit (en carpeta adjunta):**
+1.  Logotipos de GFE y UNAHUR (Vector y PNG alta resolución).
+2.  Imágenes de Gameplay 'In-Engine' (4K).
+3.  Gacetilla de prensa completa y FAQ.
+
+## 📞 Contacto para Prensa
+**Contacto:** Lic. **Andrea Soto**
+**Cargo:** Directora de Comunicaciones Estratégicas
+**Organización:** Elite Systems Dynamics / Oficina de Prensa GFE
+**Correo Electrónico:** prensa@gameforceelite.com
+**Teléfono:** +54 11 5555-GFEL (4335)
+**Web UNAHUR:** https://www.unahur.edu.ar/
+
+`.trim();
+
+            const link = document.createElement('a');
+            const contenidoCodificado = encodeURIComponent(contenidoKit);
+
+            link.href = 'data:text/plain;charset=utf-8,' + contenidoCodificado;
+            link.download = 'GameForce_Elite_Kit_Prensa_UNAHUR_2025.txt';
+            link.click();
+
+            this.innerHTML = '<i class="fas fa-check"></i> Kit Descargado (Completo)';
+            this.classList.add('btn-success');
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-download"></i> Descargar Kit de Prensa';
+                this.classList.remove('btn-success');
+            }, 3000);
+        });
+
+        document.getElementById('collaborationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const selectedType = document.querySelector('.type-card.active');
+            if (!selectedType) {
+                alert('Por favor, selecciona un tipo de colaboración.');
+                return;
+            }
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            data.collaborationType = selectedType.dataset.type;
+
+            if (selectedType.dataset.type === 'promotion') {
+                const networks = [];
+                document.querySelectorAll('input[name="networks"]:checked').forEach(cb => {
+                    networks.push(cb.value);
+                });
+                data.socialNetworks = networks;
+            }
+
+            console.log('Datos del formulario:', data);
+
+            document.getElementById('collaborationForm').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+        });
+
+        function resetForm() {
+            document.getElementById('collaborationForm').reset();
+            document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.dynamic-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById('successMessage').classList.remove('show');
+            document.getElementById('collaborationForm').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameForce Elite - Centro de Gaming Solidario</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .intro-overlay-simple.hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    section#inicio {
+      height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    header.main-header.scrolled+section#mision {
+      margin-top: 0 !important;
+    }
+
+    section#mision,
+    section#torneos,
+    section#ranking,
+    section#testimonios {
+      background-size: cover !important;
+      background-position: 50% 50% !important;
+      background-repeat: no-repeat !important;
+    }
+
+    section#mision {
+      height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./multimedia/mision.jpg') !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    section#torneos {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./multimedia/torneos_en_curso.jpg') !important;
+    }
+
+    section#ranking {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./multimedia/ranking.jpg') !important;
+    }
+
+    section#testimonios {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./multimedia/voces.jpg') !important;
+    }
+
+    section#ranking .ranking-table,
+    section#ranking .mission-card {
+      background-color: rgba(30, 41, 59, 0.8) !important;
+      border: 1px solid rgba(148, 163, 184, 0.2) !important;
+    }
+
+    section#ranking .table-dark th {
+      background-color: rgba(99, 102, 241, 0.8) !important;
+      border-color: rgba(99, 102, 241, 0.8) !important;
+    }
+
+    section#galeria {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/multimedia/momentos.jpg') !important;
+      background-size: cover !important;
+      background-position: 50% 50% !important;
+      background-repeat: no-repeat !important;
+      background-attachment: fixed !important;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed #3345ff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      min-height: 300px;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      isolation: isolate;
+      will-change: transform;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      border-color: var(--accent-color);
+    }
+
+    .gallery-bg {
+      position: absolute;
+      inset: 8px;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      object-fit: cover;
+      border-radius: 16px;
+      opacity: 0.22;
+      filter: blur(2px);
+      transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .gallery-item:hover .gallery-bg {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1.03);
+    }
+
+    .gallery-item::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 1;
+      transition: background 0.36s ease, backdrop-filter 0.36s ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::before {
+      background: rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(0);
+    }
+
+    .gallery-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .gallery-content .gallery-placeholder-title {
+      margin-bottom: 0;
+      opacity: 0.8;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .gallery-content [class^="gallery-icon-"] {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .gallery-icon-trophy,
+    .gallery-icon-medal {
+      color: var(--secondary-color);
+    }
+
+    .gallery-icon-heart,
+    .gallery-icon-users {
+      color: var(--accent-color);
+    }
+
+    .gallery-icon-gamepad,
+    .gallery-icon-handshake {
+      color: var(--primary-color);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="intro-popup" class="intro-overlay-simple">
+    <div class="intro-popup-content-simple">
+      <div class="intro-header-simple">
+        <h3 class="intro-title-simple">¡Bienvenido/a a GameForce Elite! 🎮</h3>
+      </div>
+      <p class="intro-message-simple">
+        🎧 Para ingresar al sitio, por favor acepta
+        <br class="d-md-none">
+        escuchar la música de introducción
+        <i class="fas fa-volume-up"></i>
+      </p>
+      <button id="btn-listen-simple" class="btn btn-lg intro-btn-accept-simple">
+        Sí, quiero escuchar
+      </button>
+      <button id="btn-skip-simple" class="btn btn-link intro-btn-skip-simple">
+        No, solo quiero entrar
+      </button>
+    </div>
+  </div>
+  <audio id="intro-audio" src="./multimedia/intro.mp3" preload="auto"></audio>
+  <section id="inicio" class="hero-section">
+    <img src="./multimedia/inicio.jpg" alt="Imagen de portada de GameForce Elite" class="img-fluid">
+
+    <a href="#mision" class="scroll-down-arrow">
+      <i class="fas fa-angle-down"></i>
+    </a>
+  </section>
+
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand site-title" href="#inicio" id="site-title">GAMEFORCE ELITE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#mision">Misión</a></li>
+            <li class="nav-item"><a class="nav-link" href="#torneos">Torneos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ranking">Ranking</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+          </ul>
+          <button class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <i class="fas fa-user-shield"></i> Admin Login
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <section id="mision" class="content-section">
+    <div class="container">
+      <h2 class="section-title" id="mission-title">Nuestra Misión</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="mission-card animate-on-scroll">
+            <div class="mission-icon"><i class="fas fa-trophy"></i></div>
+            <h4>Excelencia Competitiva</h4>
+            <p>Formamos campeones con entrenamientos de élite, coaching profesional y tecnología de vanguardia. Nuestros
+              jugadores compiten a nivel internacional.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mission-card animate-on-scroll">
+            <div class="mission-icon"><i class="fas fa-rocket"></i></div>
+            <h4>Innovación Tecnológica</h4>
+            <p>Equipos gaming de última generación, streaming profesional y realidad virtual. Somos pioneros en
+              experiencias gaming inmersivas.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mission-card animate-on-scroll">
+            <div class="mission-icon"><i class="fas fa-star"></i></div>
+            <h4>Comunidad Elite</h4>
+            <p>Una hermandad de gamers apasionados que trasciende fronteras. Aquí nacen las leyendas del gaming
+              latinoamericano.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="torneos" class="content-section">
+    <div class="container">
+      <h2 class="section-title">Torneos en Curso</h2>
+      <div class="row g-4 d-flex align-items-stretch">
+
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="tournament-card animate-on-scroll w-100 d-flex flex-column">
+            <div class="tournament-header">
+              <div class="tournament-title-container">
+                <svg width="30" height="30" viewbox="0 0 100 100" class="tournament-icon">
+                  <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#000" stroke-width="2" />
+                  <polygon points="30,30 70,30 80,50 70,70 30,70 20,50" fill="#000000" />
+                  <circle cx="50" cy="50" r="8" fill="#ffffff" />
+                </svg>
+                <div class="tournament-game">
+                  NEXUS Champions League
+                </div>
+              </div>
+              <div class="tournament-date">
+                15-17 Diciembre 2024
+              </div>
+            </div>
+            <div class="tournament-body flex-grow-1 d-flex flex-column">
+              <div class="tournament-prize">
+                $150,000 en premios
+              </div>
+              <h5 class="tournament-subtitle">Copa Elite FIFA 25</h5>
+              <p class="tournament-description">El torneo más prestigioso de Sudamérica. Solo los mejores 64 jugadores
+                clasificados pueden participar en esta competencia de élite.</p>
+              <ul class="tournament-details list-unstyled flex-grow-1">
+                <li><i class="fas fa-trophy text-warning"></i> Premio: $50,000 + Contrato Pro</li>
+                <li><i class="fas fa-users text-info"></i> 58/64 clasificados</li>
+                <li><i class="fas fa-clock text-success"></i> Clasificatorias abiertas</li>
+              </ul>
+              <button class="btn btn-primary-custom w-100 mt-auto colaborar-redirect-btn">Quiero colaborar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="tournament-card animate-on-scroll w-100 d-flex flex-column">
+            <div class="tournament-header">
+              <div class="tournament-title-container">
+                <svg width="30" height="30" viewbox="0 0 100 100" class="tournament-icon">
+                  <rect width="100" height="100" fill="#ff4655" rx="10" />
+                  <polygon points="20,20 50,20 80,50 50,80 20,80" fill="#ffffff" />
+                  <polygon points="30,30 50,30 70,50 50,70 30,70" fill="#ff4655" />
+                  <circle cx="50" cy="50" r="8" fill="#ffffff" />
+                </svg>
+                <div class="tournament-game">
+                  NEXUS Valorant Masters
+                </div>
+              </div>
+              <div class="tournament-date">
+                22-24 Diciembre 2024
+              </div>
+            </div>
+            <div class="tournament-body flex-grow-1 d-flex flex-column">
+              <div class="tournament-prize">
+                $75,000 para ONGs
+              </div>
+              <h5 class="tournament-subtitle">Valorant Champions Charity</h5>
+              <p class="tournament-description">Torneo 5v5 por equipos. Cada equipo debe aportar materiales escolares
+                para donación.</p>
+              <ul class="tournament-details list-unstyled flex-grow-1">
+                <li><i class="fas fa-trophy text-warning"></i> Premio: $100,000 + periféricos</li>
+                <li><i class="fas fa-users text-info"></i> 12/16 equipos</li>
+                <li><i class="fas fa-clock text-success"></i> Últimos cupos</li>
+              </ul>
+              <button class="btn btn-primary-custom w-100 mt-auto colaborar-redirect-btn">Quiero colaborar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="tournament-card animate-on-scroll w-100 d-flex flex-column">
+            <div class="tournament-header">
+              <div class="tournament-title-container">
+                <svg width="30" height="30" viewbox="0 0 100 100" class="tournament-icon">
+                  <rect width="100" height="100" fill="#c89b3c" rx="15" />
+                  <polygon points="50,15 65,35 85,35 70,50 75,70 50,60 25,70 30,50 15,35 35,35" fill="#0f2027" />
+                  <circle cx="50" cy="45" r="12" fill="#c89b3c" />
+                  <circle cx="50" cy="45" r="6" fill="#0f2027" />
+                </svg>
+                <div class="tournament-game">
+                  LoL New Year Cup
+                </div>
+              </div>
+              <div class="tournament-date">
+                28-30 Diciembre 2024
+              </div>
+            </div>
+            <div class="tournament-body flex-grow-1 d-flex flex-column">
+              <div class="tournament-prize">
+                $100,000 para familias
+              </div>
+              <h5 class="tournament-subtitle">LoL New Year Cup</h5>
+              <p class="tournament-description">Torneo de fin de año con formato eliminación directa. Donaciones van a
+                canastas navideñas.</p>
+              <ul class="tournament-details list-unstyled flex-grow-1">
+                <li><i class="fas fa-trophy text-warning"></i> Premio: Setup gaming completo</li>
+                <li><i class="fas fa-users text-info"></i> 8/8 equipos</li>
+                <li><i class="fas fa-clock text-danger"></i> Inscripciones cerradas</li>
+              </ul>
+              </ul>
+              <button class="btn btn-secondary w-100 mt-auto" id="downloadListaEspera">Lista de
+                espera</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <section id="ranking" class="content-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 order-lg-2">
+          <h3 class="mb-4 rg-title">Reglamento General</h3>
+          <div class="mission-card animate-on-scroll" id="reglamento-card">
+            <div class="mission-icon"><i class="fas fa-file-alt"></i>
+            </div>
+            <h5 class="rg-card-title">Normas de Participación</h5>
+            <ul class="rg-list text-start">
+              <li class="rg-list-item"><i class="fas fa-check-circle rg-icon"></i>Registro obligatorio con donación</li>
+              <li class="rg-list-item"><i class="fas fa-handshake rg-icon"></i>Fair play y respeto mutuo</li>
+              <li class="rg-list-item"><i class="fas fa-ban rg-icon rg-icon-ban"></i>Prohibido uso de cheats</li>
+              <li class="rg-list-item"><i class="fas fa-clock rg-icon rg-icon-clock"></i>Puntualidad en horarios</li>
+              <li class="rg-list-item"><i class="fas fa-video rg-icon"></i>Streaming permitido</li>
+            </ul>
+            <button class="btn btn-outline-light mt-3" id="downloadReglamento">Ver reglamento completo</button>
+          </div>
+        </div>
+
+        <div class="col-lg-8 order-lg-1">
+          <h2 class="section-title">Ranking de Campeones</h2>
+          <div class="ranking-table animate-on-scroll">
+            <div class="table-responsive">
+              <table class="table table-dark table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Posición</th>
+                    <th>Jugador/Equipo</th>
+                    <th>Juego</th>
+                    <th>Puntos</th>
+                    <th>Donaciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="rank-badge">1°</span></td>
+                    <td><strong>Team Vitality</strong></td>
+                    <td>CS2</td>
+                    <td>2,450</td>
+                    <td>$25,000</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">2°</span></td>
+                    <td><strong>Sentinels</strong></td>
+                    <td>Valorant</td>
+                    <td>2,380</td>
+                    <td>$22,500</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">3°</span></td>
+                    <td><strong>T1</strong></td>
+                    <td>League of Legends</td>
+                    <td>2,290</td>
+                    <td>$20,000</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">4°</span></td>
+                    <td><strong>Method</strong></td>
+                    <td>Minecraft</td>
+                    <td>2,150</td>
+                    <td>$18,750</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">5°</span></td>
+                    <td><strong>FaZe Clan</strong></td>
+                    <td>Counter-Strike: Source</td>
+                    <td>2,080</td>
+                    <td>$17,200</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">6°</span></td>
+                    <td><strong>G2 Esports</strong></td>
+                    <td>Apex Legends</td>
+                    <td>1,950</td>
+                    <td>$15,800</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">7°</span></td>
+                    <td><strong>Cloud9</strong></td>
+                    <td>Rocket League</td>
+                    <td>1,890</td>
+                    <td>$14,500</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">8°</span></td>
+                    <td><strong>Atlanta FaZe</strong></td>
+                    <td>Fortnite</td>
+                    <td>1,820</td>
+                    <td>$13,200</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">9°</span></td>
+                    <td><strong>San Francisco Shock</strong></td>
+                    <td>Call of Duty</td>
+                    <td>1,750</td>
+                    <td>$12,000</td>
+                  </tr>
+                  <tr>
+                    <td><span class="rank-badge">10°</td>
+                    <td><strong>Stolen Guys</strong></td>
+                    <td>Overwatch 2</td>
+                    <td>1,680</td>
+                    <td>$10,900</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios" class="content-section">
+    <div class="container">
+      <h2 class="section-title">Voces de la Comunidad</h2>
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-avatar"><i class="fas fa-user"></i>
+            </div>
+            <h5>Oleksandr "s1mple" Kostyliev</h5>
+            <p class="text-muted">Leyenda de CS:GO/CS2</p>
+            <p>"Ganar el campeonato es la meta, pero la verdadera victoria es cuando la adrenalina de la final se
+              transforma en ayuda tangible para quien más lo necesita. En <strong>GameForce</strong>, cada
+              <strong>victoria</strong> alimenta
+              nuestra
+              <strong><em>solidaridad</em></strong>."
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-avatar"><i class="fas fa-heart"></i>
+            </div>
+            <h5>María González</h5>
+            <p class="text-muted">Coordinadora ONG "Manos Solidarias"</p>
+            <p>"Los chicos de <strong>GameForce</strong> han sido un apoyo fundamental. En 6 meses recibimos
+              donaciones que nos permitieron ampliar nuestro comedor y atender a <strong>200 niños más</strong>."</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-avatar"><i class="fas fa-gamepad"></i>
+            </div>
+            <h5>Cloud9 LoL</h5>
+            <p class="text-muted">Equipo League of Legends</p>
+            <p>"Competir por la caridad nos motiva más que cualquier premio. Cada <strong>victoria</strong> en la
+              Grieta, cada jugada
+              exitosa, sabemos que ayuda a construir un <strong><em>futuro para todos.</em></strong>"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="galeria" class="content-section">
+    <div class="container">
+      <h2 class="section-title">Galería de Momentos</h2>
+
+      <div id="galeriaCarousel" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#galeriaCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/final_fifa.jpg" alt="Final del torneo FIFA" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-trophy gallery-icon-trophy"></i>
+                    <h4 class="gallery-placeholder-title">Final FIFA Cup 2024</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/entrega_donaciones.jpg" alt="Entrega de Donaciones" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-heart gallery-icon-heart"></i>
+                    <h4 class="gallery-placeholder-title">Entrega de Donaciones</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/stream_cover.jpg" alt="Stream en vivo" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-gamepad gallery-icon-gamepad"></i>
+                    <h4 class="gallery-placeholder-title">Streams en Vivo</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/comunidad.jpg" alt="Comunidad Gamer" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-users gallery-icon-users"></i>
+                    <h4 class="gallery-placeholder-title">Comunidad Gamer</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/premios.jpg" alt="Ceremonia de Premios" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-medal gallery-icon-medal"></i>
+                    <h4 class="gallery-placeholder-title">Ceremonia de Premios</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="gallery-item animate-on-scroll">
+                  <img src="./multimedia/alianzas.jpg" alt="Alianzas Solidarias" class="gallery-bg">
+                  <div class="gallery-content">
+                    <i class="fas fa-handshake gallery-icon-handshake"></i>
+                    <h4 class="gallery-placeholder-title">Alianzas Solidarias</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#galeriaCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#galeriaCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content login-modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel"><i class="fas fa-user-shield"></i> Acceso Administrativo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary-custom w-100">
+              <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            </button>
+            <div id="errorMessage" class="error-message">
+              Usuario incorrecto
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <h5>GAMEFORCE ELITE</h5>
+          <p>Centro de gaming solidario donde la pasión por los videojuegos se une con el compromiso social. Competimos,
+            ganamos y ayudamos.</p>
+        </div>
+        <div class="col-lg-4">
+          <h5>Contacto</h5>
+          <p>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@gameforceelite.com"
+              style="color: inherit; text-decoration: none;">info@gameforceelite.com</a>
+          </p>
+          <p>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+5411639871" style="color: inherit; text-decoration: none;">+54 11 NEXUS-01</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <a href="https://maps.google.com/?q=Puerto Madero, Buenos Aires" target="_blank"
+              style="color: inherit; text-decoration: none;">Puerto Madero, Buenos Aires</a>
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <h5>Síguenos</h5>
+          <div class="footer-social">
+            <a href="https://www.twitch.tv/gameforce" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-twitch"></i></a>
+            <a href="https://discord.gg/5D4XCbhAm9" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-discord"></i></a>
+            <a href="https://www.instagram.com/gameforce" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/gameforce" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/c/gameforce" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="text-center">
+        <p>© 2025 GAMEFORCE ELITE. Todos los derechos reservados. | Estudiante: Rubén Diaz.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
