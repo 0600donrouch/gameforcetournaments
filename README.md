@@ -1,26 +1,91 @@
-# 🏆 GameForce Elite: Torneos con causa
+# 🏆 GameForce Elite — Segundo Parcial
 
-Página web estática desarrollada con **HTML y CSS** para promocionar y comunicar el proyecto **GameForce Elite**, una plataforma que combina el gaming competitivo de alto nivel con la solidaridad.
+Proyecto web desarrollado para el **Segundo Parcial** de la materia  
+**Taller de Lenguajes de Marcado y Tecnologías Web – 2do Cuatrimestre 2025**.
 
-## 🔗 Demo
-Actualmente, la demo del proyecto se encuentra disponible aquí:
+El trabajo consiste en crear un sitio completo para **GameHub Solidario**, una comunidad que organiza torneos de videojuegos con fines solidarios.
+
+---
+
+## 🔗 Demo Online
 👉 https://0600donrouch.github.io/gameforcetournaments
 
-## ✨ Misión y Descripción
-**GameForce Elite** va más allá de los *esports*. Nuestro sitio web comunica la doble misión del proyecto:
-1.  **Torneos Elite:** Organizar competencias de alta calidad en juegos clave.
-2.  **Solidaridad en Acción:** Mostrar el impacto social de las donaciones generadas por cada evento.
+---
 
-El sitio incluye las siguientes páginas clave:
-- **`index.html`:** Página principal, misión y próximo torneo.
-- **`quierocolaborar.html`:** Página para la sección de impacto social y detalles de donaciones.
-- **`admin.html`:** (Página de administración o control interno).
-- **Diseño Adaptable (Responsive):** Accesible desde cualquier dispositivo.
+## 🎮 Objetivo del Proyecto
+El sitio web representa a **GameForce Elite**, una plataforma que combina:
+
+1. **Competencias de esports de alto nivel.**  
+2. **Impacto social real**, mostrando campañas solidarias y vías de colaboración.
+
+El sitio cumple con todas las consignas de la evaluación e incluye:
+
+---
+
+## 📌 Páginas del Sitio
+
+### ⭐ `index.html` — Sitio Público
+Incluye:
+- Portada del proyecto.
+- Misión, objetivos y valor social del gaming solidario.
+- Torneos activos.
+- Reglas y reglamentos.
+- Ranking / tabla de posiciones.
+- Testimonios y galería multimedia.
+- Botones *“Quiero colaborar”* hacia `quierocolaborar.html`.
+- **Sistema de Login para administradores**  
+  - Usuario: **mari**  
+  - Clave: **123**  
+  - Si es correcto → redirige con parámetro: `admin.html?user=mari`.  
+  - Si es incorrecto → muestra mensaje sin avanzar.
+
+---
+
+### ⭐ `admin.html` — Panel Interno
+Incluye:
+- Lectura del usuario recibido por parámetro (ej: “Bienvenido/a mari”).
+- **Maqueta ABM** de torneos/campañas (sin backend):
+  - Crear torneo/campaña (título, juego, plataforma, fecha, cupos, objetivo solidario).
+  - Editar reglas, premios simbólicos, enlaces a PDF y streams.
+  - Eliminar elementos del listado.
+- Opcional: listado de inscriptos y sponsors.
+- Opción de volver al Home.
+- Mismo header y footer del sitio público.
+
+---
+
+### ⭐ `quierocolaborar.html` — Formulario Público
+Formulario dinámico según el tipo de colaboración:
+
+#### 🟦 Dinero
+- Monto  
+- Tipo de aporte (único / mensual)  
+- Medio de pago  
+
+#### 🟩 Trabajo
+- Rol  
+- Disponibilidad  
+- Zona  
+- Juego/plataforma preferida  
+
+#### 🟪 Difusión
+- Redes sociales  
+- Frecuencia  
+- Descarga de kit de prensa  
+
+Además:
+- Navegación coherente.  
+- Mismo header/footer.  
+- Diseño accesible y responsivo.
+
+---
 
 ## 🛠️ Tecnologías utilizadas
-- HTML5
-- CSS3
-- JavaScript (para la interactividad)
+- **HTML5**  
+- **CSS3**  
+- **JavaScript**
+
+---
 
 ## 📂 Estructura del proyecto
 - `index.html`
@@ -30,9 +95,21 @@ El sitio incluye las siguientes páginas clave:
 - `js/`
 - `multimedia/`
 
-## 🚀 Autor
-**Rubén Díaz**  
-[Perfil de GitHub](https://github.com/0600donrouch)
+---
+
+## 📝 Resultado / Nota
+**Calificación:**  
+*(En proceso)*
+
+**Observaciones:**  
+*(En proceso)*
 
 ---
-*¿Te animás a competir por un futuro mejor?*
+
+## 🚀 Autor
+**Rubén Díaz**  
+[GitHub – 0600donrouch](https://github.com/0600donrouch)
+
+---
+
+*“¿Te animás a competir por un futuro mejor?”*
