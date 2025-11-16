@@ -104,7 +104,7 @@ Además:
 
 ## 📝 Resultado / Nota
 **Calificación:**  
-*(En proceso)*
+> *(En proceso)*
 
 ---
 
