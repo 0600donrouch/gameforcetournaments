@@ -88,12 +88,17 @@ Además:
 ---
 
 ## 📂 Estructura del proyecto
-- `index.html`
-- `admin.html`
-- `quierocolaborar.html`
-- `css/`
-- `js/`
-- `multimedia/`
+- index.html
+- admin.html
+- quierocolaborar.html
+- css/
+  - styles.css
+- js/
+  - scripts.js
+- multimedia/
+  - photo.jpg
+  - video.mp4
+  - audio.mp3
 
 ---
 
@@ -101,8 +106,10 @@ Además:
 **Calificación:**  
 *(En proceso)*
 
-**Observaciones:**  
-*(En proceso)*
+---
+
+## 🧾 Devolución del profesor/a
+> *(En proceso)*
 
 ---
 
