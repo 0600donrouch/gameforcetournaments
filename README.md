@@ -104,12 +104,12 @@ Además:
 
 ## 📝 Resultado / Nota
 **Calificación:**  
-> *(En proceso)*
+> *10/10*
 
 ---
 
 ## 🧾 Devolución del profesor/a
-> *10/10*
+> *Sitio muy completo y profesional. Buen diseño y contenido real. Excelente trabajo.*
 
 ---
 
