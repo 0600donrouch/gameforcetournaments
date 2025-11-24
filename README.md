@@ -109,7 +109,7 @@ Además:
 ---
 
 ## 🧾 Devolución del profesor/a
-> *(En proceso)*
+> *10/10*
 
 ---
 
