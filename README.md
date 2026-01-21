@@ -1,93 +1,87 @@
-# 🏆 GameForce Elite — Segundo Parcial
+# 🏆 GameForce Elite — Second Midterm Project
 
-Proyecto web desarrollado para el **Segundo Parcial** de la materia  
-**Taller de Lenguajes de Marcado y Tecnologías Web – 2do Cuatrimestre 2025**.
+Web project developed for the **Second Midterm Exam** of the course:  
+**Markup Languages and Web Technologies Workshop – 2nd Semester 2025**.
 
-El trabajo consiste en crear un sitio completo para **GameHub Solidario**, una comunidad que organiza torneos de videojuegos con fines solidarios.
+The work consists of creating a complete site for **GameHub Solidario**, a community that organizes video game tournaments for charitable purposes.
 
 ---
 
-## 🔗 Demo Online
+## 🔗 Online Demo
 👉 https://0600donrouch.github.io/gameforcetournaments
 
 ---
 
-## 🎮 Objetivo del Proyecto
-El sitio web representa a **GameForce Elite**, una plataforma que combina:
+## 🎮 Project Objective
+The website represents **GameForce Elite**, a platform that combines:
 
-1. **Competencias de esports de alto nivel.**  
-2. **Impacto social real**, mostrando campañas solidarias y vías de colaboración.
+1. **High-level esports competitions.** 2. **Real social impact**, showcasing solidarity campaigns and ways to collaborate.
 
-El sitio cumple con todas las consignas de la evaluación e incluye:
-
----
-
-## 📌 Páginas del Sitio
-
-### ⭐ `index.html` — Sitio Público
-Incluye:
-- Portada del proyecto.
-- Misión, objetivos y valor social del gaming solidario.
-- Torneos activos.
-- Reglas y reglamentos.
-- Ranking / tabla de posiciones.
-- Testimonios y galería multimedia.
-- Botones *“Quiero colaborar”* hacia `quierocolaborar.html`.
-- **Sistema de Login para administradores**  
-  - Usuario: **mari**  
-  - Clave: **123**  
-  - Si es correcto → redirige con parámetro: `admin.html?user=mari`.  
-  - Si es incorrecto → muestra mensaje sin avanzar.
+The site fulfills all the evaluation requirements and includes:
 
 ---
 
-### ⭐ `admin.html` — Panel Interno
-Incluye:
-- Lectura del usuario recibido por parámetro (ej: “Bienvenido/a mari”).
-- **Maqueta ABM** de torneos/campañas (sin backend):
-  - Crear torneo/campaña (título, juego, plataforma, fecha, cupos, objetivo solidario).
-  - Editar reglas, premios simbólicos, enlaces a PDF y streams.
-  - Eliminar elementos del listado.
-- Opcional: listado de inscriptos y sponsors.
-- Opción de volver al Home.
-- Mismo header y footer del sitio público.
+## 📌 Site Pages
+
+### ⭐ `index.html` — Public Site
+Includes:
+- Project landing page.
+- Mission, objectives, and the social value of solidarity gaming.
+- Active tournaments.
+- Rules and regulations.
+- Ranking / leaderboard.
+- Testimonials and multimedia gallery.
+- *"I want to collaborate"* buttons leading to `quierocolaborar.html`.
+- **Admin Login System** - Username: **mari** - Password: **123** - If correct → redirects with parameter: `admin.html?user=mari`.  
+  - If incorrect → displays an error message without proceeding.
 
 ---
 
-### ⭐ `quierocolaborar.html` — Formulario Público
-Formulario dinámico según el tipo de colaboración:
-
-#### 🟦 Dinero
-- Monto  
-- Tipo de aporte (único / mensual)  
-- Medio de pago  
-
-#### 🟩 Trabajo
-- Rol  
-- Disponibilidad  
-- Zona  
-- Juego/plataforma preferida  
-
-#### 🟪 Difusión
-- Redes sociales  
-- Frecuencia  
-- Descarga de kit de prensa  
-
-Además:
-- Navegación coherente.  
-- Mismo header/footer.  
-- Diseño accesible y responsivo.
+### ⭐ `admin.html` — Internal Dashboard
+Includes:
+- Greeting based on the parameter received (e.g., "Welcome mari").
+- **CRUD Mockup** for tournaments/campaigns (no backend):
+  - Create tournament/campaign (title, game, platform, date, slots, solidarity goal).
+  - Edit rules, symbolic prizes, PDF links, and streams.
+  - Delete items from the list.
+- Optional: list of registrants and sponsors.
+- Option to return to Home.
+- Consistent header and footer with the public site.
 
 ---
 
-## 🛠️ Tecnologías utilizadas
-- **HTML5**  
-- **CSS3**  
-- **JavaScript**
+### ⭐ `quierocolaborar.html` — Public Form
+Dynamic form based on the type of collaboration:
+
+#### 🟦 Financial
+- Amount  
+- Contribution type (one-time / monthly)  
+- Payment method  
+
+#### 🟩 Labor
+- Role  
+- Availability  
+- Location/Zone  
+- Preferred game/platform  
+
+#### 🟪 Outreach
+- Social media platforms  
+- Frequency  
+- Press kit download  
+
+Additionally:
+- Coherent navigation.  
+- Consistent header/footer.  
+- Accessible and responsive design.
 
 ---
 
-## 📂 Estructura del proyecto
+## 🛠️ Technologies Used
+- **HTML5** - **CSS3** - **JavaScript**
+
+---
+
+## 📂 Project Structure
 - index.html
 - admin.html
 - quierocolaborar.html
@@ -102,21 +96,19 @@ Además:
 
 ---
 
-## 📝 Resultado / Nota
-**Calificación:**  
-> *10/10*
+## 📝 Result / Grade
+**Final Grade:** > *10/10*
 
 ---
 
-## 🧾 Devolución del profesor/a
-> *Sitio muy completo y profesional. Buen diseño y contenido real. Excelente trabajo.*
+## 🧾 Professor's Feedback
+> *Very complete and professional site. Good design and real content. Excellent work.*
 
 ---
 
-## 🚀 Autor
-**Rubén Díaz**  
-[GitHub – 0600donrouch](https://github.com/0600donrouch)
+## 🚀 Author
+**Rubén Díaz** [GitHub – 0600donrouch](https://github.com/0600donrouch)
 
 ---
 
-*“¿Te animás a competir por un futuro mejor?”*
+*"Are you ready to compete for a better future?"*
